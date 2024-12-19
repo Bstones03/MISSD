@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .add-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .add-button a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-button a:hover {
+            background-color: #0056b3;
+        }
+        .home {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        .home a {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .home a:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 0.8rem;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .action-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .action-buttons a.edit {
+            background-color: #28a745;
+        }
+
+        .action-buttons a.edit:hover {
+            background-color: #218838;
+        }
+
+        .action-buttons a.shooters {
+            background-color: #17a2b8;
+        }
+
+        .action-buttons a.shooters:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Competitions</h1>
+        <div class="home">
+            <a href="/">Home</a>
+        </div>
+        <div class="add-button">
+            <a href="/competition/add">+ Add Competition</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Is Over</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for competition in competitions %}
+                <tr>
+                    <td>{{ competition.Shoot_id }}</td>
+                    <td>{{ competition.Shoot_name }}</td>
+                    <td>{{ competition.city }}</td>
+                    <td>{{ competition.state }}</td>
+                    <td>{{ 'Yes' if competition.is_over else 'No' }}</td>
+                    <td class="action-buttons">
+                        <a href="/competition/{{ competition.Shoot_id }}/edit" class="edit">Edit</a>
+                        <a href="/competition/{{ competition.Shoot_id }}/shooters" class="shooters">Shooters</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

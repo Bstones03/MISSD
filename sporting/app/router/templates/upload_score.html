@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Score</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+            color: #555;
+        }
+
+        select, input[type="number"], input[type="file"], input[type="checkbox"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Score</h1>
+        <form action="/scores/upload" method="post" enctype="multipart/form-data">
+            <label for="competition_id">Competition:</label>
+            <select name="competition_id" id="competition_id" required>
+                {% for competition in competitions %}
+                <option value="{{ competition.Shoot_id }}">{{ competition.Shoot_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="shooter_id">Shooter:</label>
+            <select name="shooter_id" id="shooter_id" required>
+                {% for shooter in shooters %}
+                <option value="{{ shooter.Shid }}">{{ shooter.S_Fname }} {{ shooter.S_Lname }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="super">Super Score:</label>
+            <div class="checkbox-label">
+                <input type="checkbox" name="super" id="super" value="true">
+                <label for="super">Check if this is a super score</label>
+            </div>
+
+            <label for="score">Score:</label>
+            <input type="number" name="score" id="score" min="0" required>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" name="photo" id="photo" accept="image/*" required>
+
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>

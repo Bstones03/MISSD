@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page - FastAPI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            margin: 40px auto;
+            width: 80%;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 20px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .login-button {
+            position: absolute; /* Position it absolutely within the header */
+            right: 20px; /* Distance from the right */
+            top: 0px; /* Distance from the top */
+            background-color: #007BFF; /* Blue button for login */
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Shooting Sports Management</h1>
+    </header>
+
+    <div class="container">
+        <h2>Main Dashboard</h2>
+        <p>Select an action to perform:</p>
+
+        <!-- Navigation Buttons -->
+        <a href="/shooters" class="button">View Shooters</a>
+        <a href="/scores" class="button">View Scores</a>
+        <a href="/competition" class="button">View competitions</a>
+        <a href="/scores/upload" class="button">Upload Scores</a>
+
+
+        <!-- Login Button --
+        <a href="/login" class="button login-button">Login</a>-->
+    </div>
+
+</body>
+</html>

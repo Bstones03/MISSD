@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competition Scores</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Competition Scores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Shooter ID</th>
+                <th>Shoot ID</th>
+                <th>Station ID</th>
+                <th>Super</th>
+                <th>Squad ID</th>
+                <th>Score ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in competition_scores %}
+            <tr>
+                <td>{{ score.Shid }}</td>
+                <td>{{ score.Shoot_id }}</td>
+                <td>{{ score.Station_id }}</td>
+                <td>{{ "Yes" if score.super else "No" }}</td>
+                <td>{{ score.Sqid }}</td>
+                <td>{{ score.score_id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooters and Scores for {{ competition.Shoot_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shooters and Scores for {{ competition.Shoot_name }}</h1>
+
+    {% if shooters_scores %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Shooter FName</th>
+                    <th>Shooter LName</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for shooter in shooters %}
+                <tr>
+                    <td>{{ shooter.S_Fname }}</td>
+                    <td>{{ shooter.S_Lname }}</td>
+                    <td>{{ shooter.total }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    {% else %}
+        <p>No shooters found for this competition.</p>
+    {% endif %}
+
+    <div class="button-container">
+        <a href="/competition">
+            <button>Back to Competitions</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooter List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+        .search-bar {
+            margin: 15px 0;
+            text-align: right;
+        }
+        .search-bar input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 250px;
+            margin-right: 10px;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .back-link {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 15px 0;
+            color: white;
+            background-color: #4CAF50;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Shooters List</h1>
+    </header>
+
+    <div class="container">
+        <a href="/" class="back-link">Back to Dashboard</a>
+
+        <!-- Search bar form -->
+        <div class="search-bar">
+            <form method="get" action="/search_shooters">
+                <input type="text" name="query" placeholder="Search by Name, ID, or School">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Shooters table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Shooter ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Handed</th>
+                    <th>Gender</th>
+                    <th>School</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for shooter in shooters %}
+                <tr>
+                    <td>{{ shooter.Shid }}</td>
+                    <td>{{ shooter.S_Fname }}</td>
+                    <td>{{ shooter.S_Lname }}</td>
+                    <td>{{ "Right" if shooter.handed else "Left" }}</td>
+                    <td>{{ "Male" if shooter.gender == 1 else "Female" }}</td>
+                    <td>{{ shooter.school.Schname if shooter.school else "N/A" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
