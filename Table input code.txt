@@ -1,0 +1,150 @@
+CREATE TABLE [name](
+[name] ----- AUTO_INCREMENT PRIMARY KEY,
+...
+);
+
+CREATE TABLE Schedule(
+`Sched_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`Sqid` BIGINT,
+`event id` BIGINT,
+`Shoot id` BIGINT,
+`event name` VARCHAR(20),
+`time` TIME,
+`field/station` BIGINT);
+
+CREATE TABLE Events(
+`event id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`event` VARCHAR(20),
+`num of boxes` BIGINT,
+`Shoot id` BIGINT);
+
+
+TRAP:
+
+CREATE TABLE TrapDBLTrap(
+`score id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`post id` BIGINT,
+`Shid` BIGINT,
+`Shoot id` BIGINT,
+`Sqid` BIGINT,
+`box num` SMALLINT,
+`dbls` BOOLEAN);
+
+CREATE TABLE TrapScore(
+`post id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`score id` BIGINT,
+`Shot 1` SMALLINT,
+`Shot 2` SMALLINT);
+
+ALTER TABLE trapdbltrap
+ADD CONSTRAINT `Shid t`
+FOREIGN KEY (`Shid`)
+REFERENCES shooter (`Shid`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE trapdbltrap
+ADD CONSTRAINT `Shoot id t`
+FOREIGN KEY (`Shoot id`)
+REFERENCES competion (`Shoot_id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE trapdbltrap
+ADD CONSTRAINT `Sqid t`
+FOREIGN KEY (`Sqid`)
+REFERENCES sqid (`Sqid`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE trapdbltrap
+ADD CONSTRAINT `post id t`
+FOREIGN KEY (`post id`)
+REFERENCES trapscore (`post id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE trapscore
+ADD CONSTRAINT `score id t`
+FOREIGN KEY (`score id`)
+REFERENCES trapdbltrap (`score id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+
+SPORTING:
+
+CREATE TABLE SportingSS(
+`pair id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`Shid` BIGINT,
+`Shoot id` BIGINT,
+`Station id` BIGINT,
+`Sqid` BIGINT,
+`pair num' BIGINT,
+`super` BOOLEAN);
+
+CREATE TABLE TargetMenu(
+`Station id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`Shoot id` BIGINT,
+`Target 1 type` VARCHAR(30),
+`Target 1 label` BIGINT,
+`Target 2 type` VARCHAR(30),
+`Target 2 label` BIGINT);
+
+CREATE TABLE SportigScore(
+`Station id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`pair id` BIGINT,
+`Shot 1` BOOLEAN,
+`Shot 2` BOOLEAN);
+
+
+SKEET:
+
+CREATE TABLE SkeetDBLSkeet(
+`score id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`post id` BIGINT,
+`Shid` BIGINT,
+`Shoot id` BIGINT,
+`Sqid` BIGINT,
+`option post` VARCHAR(8),
+`option` BOOLEAN,
+`post num` SMALLINT,
+`box num` SMALLINT,
+`dbls` BOOLEAN,
+`speed` BOOLEAN);
+
+CREATE TABLE SkeetScore(
+`post id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+`score id` BIGINT,
+`Sh High 1` BOOLEAN,
+`Sh High 2` BOOLEAN,
+`Sh Low 1` BOOLEAN,
+`Sh Low 2` BOOLEAN);
+
+ALTER TABLE skeetscore
+ADD CONSTRAINT `score id sk`
+FOREIGN KEY (`score id`)
+REFERENCES skeetdblskeet (`score id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE skeetdblskeet
+ADD CONSTRAINT `Shid sk`
+FOREIGN KEY (`Shid`)
+REFERENCES shooter (`Shid`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE skeetdblskeet
+ADD CONSTRAINT `Shoot id sk`
+FOREIGN KEY (`Shoot id`)
+REFERENCES competion (`Shoot_id`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE skeetdblskeet
+ADD CONSTRAINT `Sqid sk`
+FOREIGN KEY (`Sqid`)
+REFERENCES sqid (`Sqid`)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
